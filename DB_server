@@ -1,0 +1,84 @@
+
+# Create a network security group front DB
+az network nsg create --resource-group RGMOURAD_0 --name NGS-generic-linux-N-tier-3
+# Create a network security group rule for port 22.
+az network nsg rule create --resource-group RGMOURAD_0 --nsg-name NGS-generic-linux-N-tier-3 --name NGS-generic-linux-N-tier-3-rule-22_in \
+  --protocol tcp --direction inbound --source-address-prefix '*' --source-port-range '*'  \
+  --destination-address-prefix '*' --destination-port-range 22 --access allow --priority 1000
+# Create a network security group rule for port 80.
+az network nsg rule create --resource-group RGMOURAD_0 --nsg-name NGS-generic-linux-N-tier-3 --name NGS-generic-linux-N-tier-3-rule-80_in \
+--protocol tcp --direction inbound  --source-address-prefix '*' --source-port-range '*' \
+--destination-address-prefix '*' --destination-port-range 80 --access allow --priority 1001
+# Create a network security group rule for port 8080.
+az network nsg rule create --resource-group RGMOURAD_0 --nsg-name NGS-generic-linux-N-tier-3 --name NGS-generic-linux-N-tier-3-rule-8080_in \
+  --protocol tcp --direction inbound --source-address-prefix '*' --source-port-range '*'  \
+  --destination-address-prefix '*' --destination-port-range 8080 --access allow --priority 1002
+# Create a network security group rule for port 3306.
+az network nsg rule create --resource-group RGMOURAD_0 --nsg-name NGS-generic-linux-N-tier-3 --name NGS-generic-linux-N-tier-3-rule-3306_in \
+  --protocol tcp --direction inbound --source-address-prefix '*' --source-port-range '*'  \
+  --destination-address-prefix '*' --destination-port-range 3306 --access allow --priority 1003
+# Create a network security group rule for port 22_out.
+az network nsg rule create --resource-group RGMOURAD_0 --nsg-name NGS-generic-linux-N-tier-3 --name NGS-generic-linux-N-tier-3-rule-22_out \
+  --protocol tcp --direction Outbound --source-address-prefix '*' --source-port-range '*'  \
+  --destination-address-prefix '*' --destination-port-range 22 --access allow --priority 2000
+# Create a network security group rule for port 80_out.
+az network nsg rule create --resource-group RGMOURAD_0 --nsg-name NGS-generic-linux-N-tier-3 --name NGS-generic-linux-N-tier-3-rule-80_out \
+--protocol tcp --direction Outbound  --source-address-prefix '*' --source-port-range '*' \
+--destination-address-prefix '*' --destination-port-range 80 --access allow --priority 2001
+# Create a network security group rule for port 8080_out.
+az network nsg rule create --resource-group RGMOURAD_0 --nsg-name NGS-generic-linux-N-tier-3 --name NGS-generic-linux-N-tier-3-rule-8080_out \
+  --protocol tcp --direction Outbound --source-address-prefix '*' --source-port-range '*'  \
+  --destination-address-prefix '*' --destination-port-range 8080 --access allow --priority 2002
+# Create a network security group rule for port 3306_out.
+az network nsg rule create --resource-group RGMOURAD_0 --nsg-name NGS-generic-linux-N-tier-3 --name NGS-generic-linux-N-tier-3-rule-3306_out \
+  --protocol tcp --direction Outbound --source-address-prefix '*' --source-port-range '*'  \
+  --destination-address-prefix '*' --destination-port-range 3306 --access allow --priority 2003
+
+#create a subnet for middle app after front end subnet 
+az network vnet subnet create --address-prefix 10.100.3.0/24 --name subnet-DB --resource-group RGMOURAD_0 --vnet-name vnet-root_2 --network-security-group NGS-generic-linux-N-tier-3  
+
+# create loadbalancer between subnet front and subnet backend 
+#az network lb create --resource-group RGMOURAD_0 --name load-balancer-front-to-middle --private-ip-address 10.100.2.4 --subnet subnet-middle --vnet-name vnet-root_2 --backend-pool-name demo-middle-end-pool
+
+# Creates an LB probe on port 80.
+#az network lb probe create --resource-group RGMOURAD_0 --lb-name load-balancer-front-to-middle \
+#  --name health-prob-1-80 --protocol tcp --port 80
+
+# Creates an LB rule for port 80.
+#az network lb rule create --resource-group RGMOURAD_0 --lb-name load-balancer-front-to-middle --name load-balancer-rule-1-80 \
+#  --protocol tcp --frontend-port 80 --backend-port 80  \
+#  --backend-pool-name demo-middle-end-pool --probe-name health-prob-1-80
+
+# Creates an LB probe on port 8080.
+#az network lb probe create --resource-group RGMOURAD_0 --lb-name load-balancer-front-to-middle \
+#  --name health-prob-1-8080 --protocol tcp --port 8080
+
+# Creates an LB rule for port 8080.
+#az network lb rule create --resource-group RGMOURAD_0 --lb-name load-balancer-front-to-middle --name load-balancer-rule-1-8080 \
+#  --protocol tcp --frontend-port 8080 --backend-port 8080  \
+#  --backend-pool-name demo-middle-end-pool --probe-name health-prob-1-8080
+
+
+# Create three virtual network cards and associate with public IP address and NSG.
+az network nic create \
+    --resource-group RGMOURAD_0 --name nic-ub-16-BD-serv-1 \
+    --vnet-name vnet-root_2  --subnet subnet-DB \
+    --network-security-group NGS-generic-linux-N-tier-3
+
+
+# Create an availability set.
+#az vm availability-set create --resource-group RGMOURAD_0 --name Availability-Set-back-end-2 --platform-fault-domain-count 3 --platform-update-domain-count 3
+
+# Create three virtual machines,  with correct extensions.
+az vm create --resource-group RGMOURAD_0 --name ub-16-demo-db-mourad --admin-password M0nP@ssw0rd! --admin-username demo \
+   --nics nic-ub-16-BD-serv-1 \
+   --image UbuntuLTS \
+   --size Standard_DS2_v2 
+
+#   --availability-set Availability-Set-back-end-2 \
+# Now the extensions... with correct extensions.
+
+az vm extension set --resource-group RGMOURAD_0 --vm-name ub-16-demo-db-mourad --name customScript --publisher Microsoft.Azure.Extensions \
+   --settings '{"fileUris": ["https://rgcloudmouradgeneralpurp.blob.core.windows.net/exchangecontainermourad/sh_bootstrap_db.sh"],"commandToExecute": "./sh_bootstrap_db.sh"}'
+
+
