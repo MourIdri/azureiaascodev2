@@ -1,6 +1,6 @@
-# Az Essentials
+# AZURE ESSENTIALS Essentials
 
-# START OF DEMO 1 
+# start of demo 1 
 
 Creation VM via Portal and cli
 
@@ -109,9 +109,9 @@ Creation VM via Portal and cli
      --image win2016datacenter \
      --size Standard_B2ms --os-disk-size-gb 32    
 
-# END OF DEMO 1 
+# end of demo 1
 
-# START OF DEMO 2
+# start of demo 2
 
 Preparation for Demo 2 : Before going further open the embeded cli in azure portal. Make sure you can use your default subscription and download the script from here : 
 
@@ -136,10 +136,12 @@ Demo 2 :
     az vm resize --resource-group myResourceGroup --name myVM --size Standard_DS3_v2
     >_ az vm resize --resource-group --resource-group DemoRG --name ub-16-front-web-1 --size Standard_DS3_v2
 
-   2.2 : Go to  
+   2.2 : Go to your resource group and check in "Automation script" you will see the deployed resources as a template with some languages
+
+   2.3 : Deploy resource group with a VM from a Json. 
    
     #Create a storage account 
     az vm resize --resource-group myResourceGroup --name myVM --size Standard_DS3_v2
     >_ az vm resize --resource-group --resource-group DemoRG --name ub-16-front-web-1 --size Standard_DS3_v2
   
-# END OF DEMO 2
+# end of demo 2
