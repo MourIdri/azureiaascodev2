@@ -1,6 +1,5 @@
 # Az Essentials
 
-
 START OF DEMO 1 
 
 Creation VM via Portal and cli
@@ -112,7 +111,7 @@ Creation VM via Portal and cli
 
 END OF DEMO 1 
 
-
+START OF DEMO 2
 Preparation for Demo 2 : Before going further open the embeded cli in azure portal. Make sure you can use your default subscription and download the script from here : 
 
       >_ wget https://raw.githubusercontent.com/MourIdri/azureiaascodev1/master/1_deploy_front_and_back_end_app.sh
