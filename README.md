@@ -118,20 +118,24 @@ Preparation for Demo 2 : Before going further open the embeded cli in azure port
       >_ wget https://raw.githubusercontent.com/MourIdri/azureiaascodev1/master/1_deploy_front_and_back_end_app.sh
       >_ wget https://raw.githubusercontent.com/MourIdri/azureiaascodev1/master/2_deploy_DB_server.sh
       
-Chmod it and execute the script 
+Copy- past the content of the script into the CLI portal and let the sequence to finish for both script  since bash is not very effecive... Or use a Linux client with Azcli installed on it, then you can do : 
 
       >_ chmod 777 1_deploy_front_and_back_end_app.sh
       >_ chmod 777 2_deploy_DB_server.sh
       >_ ./1_deploy_front_and_back_end_app.sh
       >_ ./2_deploy_DB_server.sh
 
-then wait for the 2 to be finished ( use 2 browser or any linux client with AZCLI on it to do it faster ) 
+then wait for the 2 to be finished ( use 2 browser or any linux client with AZCLI on it to do it faster ). 
+This will create 3 tiers applications and on each tier, there is a load balanced Availibility set with 2 VMs on it. 
 
 Demo 2 : 
-    >_ 1.1 : VM_1 (front end) : using portal 
-    1.2 : VM_2 (middleware): using cli
-    1.3 : VM_3 (storage): using portal , market place mongodb server 
-    1.4 : VM_4 (Admin): using cli 
+
+   2.1 : Resize the VMs and monitor the traffic if the service is still available. 
+   
+    #Create a storage account 
+    az vm resize --resource-group myResourceGroup --name myVM --size Standard_DS3_v2
+    >_ az vm resize --resource-group --resource-group DemoRG --name ub-16-front-web-1 --size Standard_DS3_v2
+
 Démo 2 : 
 Resize VM and Deploy using Json template 
   
