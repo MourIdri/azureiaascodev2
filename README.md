@@ -1,6 +1,8 @@
 # Az Essentials
 
-Demo 1 : 
+
+START OF DEMO 1 
+
 Creation VM via Portal and cli
 
    0.1 : Env & Network _ Create RG 
@@ -59,6 +61,9 @@ Creation VM via Portal and cli
 
    1.1 : Compute & Storage _ Create Storage Account for general purposes
    
+    #Create a storage account 
+    >_ az storage account create --location westeurope --name changemynametobeunique --resource-group DemoRG --sku Standard_LRS
+
    1.2 : Compute & Storage _ Create frontend compute 
      
      # Create NIC for the VM front :
@@ -70,7 +75,7 @@ Creation VM via Portal and cli
      >_ az vm create --resource-group DemoRG --name vm-front --admin-password M0nP@ssw0rd! --admin-username demo \
      --nics nic-vm-front \ 
      --image UbuntuLTS \
-     --size Standard_B2ms
+     --size Standard_B2ms --os-disk-size-gb 32
  
       # Create NIC for the VM middle :
      >_ az network nic create \
@@ -81,7 +86,7 @@ Creation VM via Portal and cli
      >_ az vm create --resource-group DemoRG --name vm-middle --admin-password M0nP@ssw0rd! --admin-username demo \
      --nics nic-vm-middle \ 
      --image UbuntuLTS \
-     --size Standard_DS2_v2
+     --size Standard_DS2_v2 --os-disk-size-gb 32
  
       # Create NIC for the VM storage :
      >_ az network nic create \
@@ -92,7 +97,7 @@ Creation VM via Portal and cli
      >_ az vm create --resource-group DemoRG --name vm-storage --admin-password M0nP@ssw0rd! --admin-username demo \
      --nics nic-vm-storage \ 
      --image UbuntuLTS \
-     --size Standard_DS2_v2
+     --size Standard_DS2_v2 --os-disk-size-gb 32
   
       # Create NIC for the VM admin :
      >_ az network nic create \
@@ -103,10 +108,26 @@ Creation VM via Portal and cli
      >_ az vm create --resource-group DemoRG --name vm-admin --admin-password M0nP@ssw0rd! --admin-username demo \
      --nics nic-vm-storage \ 
      --image win2016datacenter \
-     --size Standard_B2ms    
+     --size Standard_B2ms --os-disk-size-gb 32    
+
+END OF DEMO 1 
 
 
-  ds
+Preparation for Demo 2 : Before going further open the embeded cli in azure portal. Make sure you can use your default subscription and download the script from here : 
+
+      >_ wget https://raw.githubusercontent.com/MourIdri/azureiaascodev1/master/1_deploy_front_and_back_end_app.sh
+      >_ wget https://raw.githubusercontent.com/MourIdri/azureiaascodev1/master/2_deploy_DB_server.sh
+      
+Chmod it and execute the script 
+
+      >_ chmod 777 1_deploy_front_and_back_end_app.sh
+      >_ chmod 777 2_deploy_DB_server.sh
+      >_ ./1_deploy_front_and_back_end_app.sh
+      >_ ./2_deploy_DB_server.sh
+
+then wait for the 2 to be finished ( use 2 browser or any linux client with AZCLI on it to do it faster ) 
+
+Demo 2 : 
     >_ 1.1 : VM_1 (front end) : using portal 
     1.2 : VM_2 (middleware): using cli
     1.3 : VM_3 (storage): using portal , market place mongodb server 
