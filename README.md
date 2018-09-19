@@ -97,6 +97,12 @@ Creation VM via Portal and cli
      --nics nic-vm-storage \ 
      --image UbuntuLTS \
      --size Standard_DS2_v2 --os-disk-size-gb 32
+     >_ az vm disk attach \
+     -g DemoRG \
+     --vm-name vm-storage \
+     --disk vm-storage-disk-1 \
+     --new \
+     --size-gb 50
   
       # Create NIC for the VM admin :
      >_ az network nic create \
