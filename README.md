@@ -132,7 +132,8 @@ Demo 2 :
 
    2.1 : Resize the VMs and monitor the traffic if the service is still available. 
    
-    #Create a storage account 
+    #Create a storage account
+    >_ az storage account create --location francecentral --name changemynamesince this is unique --resource-group DemoRG --sku Standard_LRS
     az vm resize --resource-group myResourceGroup --name myVM --size Standard_DS3_v2
     >_ az vm resize --resource-group --resource-group DemoRG --name ub-16-front-web-1 --size Standard_DS3_v2
 
