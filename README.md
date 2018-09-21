@@ -66,9 +66,7 @@ Creation VM via Portal and cli
    1.2 : Compute & Storage _ Create frontend compute 
      
      # Create NIC for the VM front :
-      az network nic create \
-    --resource-group DemoRG --name NIC-VM1 \
-    --vnet-name DemoVnet  --subnet Subnet1 
+      az network nic create --resource-group DemoRG --name NIC-VM1 --vnet-name DemoVnet  --subnet Subnet1 
     
      # Create the VM front :
       az vm create --resource-group DemoRG --name VM1 --admin-password M0nP@ssw0rd! --admin-username demo --nics NIC-VM1  --image UbuntuLTS --size Standard_B2ms --os-disk-size-gb 32
