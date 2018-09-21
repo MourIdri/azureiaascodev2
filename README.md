@@ -121,15 +121,15 @@ Creation VM via Portal and cli
 
 Preparation for Demo 2 : Before going further open the embeded cli in azure portal. Make sure you can use your default subscription and download the script from here : 
 
-       wget https://raw.githubusercontent.com/MourIdri/azureiaascodev1/master/1_deploy_front_and_back_end_app.sh
-       wget https://raw.githubusercontent.com/MourIdri/azureiaascodev1/master/2_deploy_DB_server.sh
+      wget https://raw.githubusercontent.com/MourIdri/azureiaascodev1/master/1_deploy_front_and_back_end_app.sh
+      wget https://raw.githubusercontent.com/MourIdri/azureiaascodev1/master/2_deploy_DB_server.sh
       
 Copy- past the content of the script into the CLI portal and let the sequence to finish for both script  since bash is not very effecive... Or use a Linux client with Azcli installed on it, then you can do : 
 
-       chmod 777 1_deploy_front_and_back_end_app.sh
-       chmod 777 2_deploy_DB_server.sh
-       ./1_deploy_front_and_back_end_app.sh
-       ./2_deploy_DB_server.sh
+      chmod 777 1_deploy_front_and_back_end_app.sh
+      chmod 777 2_deploy_DB_server.sh
+      ./1_deploy_front_and_back_end_app.sh
+      ./2_deploy_DB_server.sh
 
 then wait for the 2 to be finished ( use 2 browser or any linux client with AZCLI on it to do it faster ). 
 This will create 3 tiers applications and on each tier, there is a load balanced Availibility set with 2 VMs on it. 
@@ -150,8 +150,8 @@ Demo 2 :
      wget https://raw.githubusercontent.com/MourIdri/azureiaascodev1/master/azuredeploy.json
      wget https://raw.githubusercontent.com/MourIdri/azureiaascodev1/master/azuredeploy.parameters.json
     #Create a ressource group since the Json will not create the resource itself : 
-    az group create --name DemoRGJSON --location "westeurope"
+     az group create --name DemoRGJSON --location "westeurope"
     #Start the deploiment using this command : 
-    az group deployment create -g DemoRGJSON --template-uri https://raw.githubusercontent.com/MourIdri/azureiaascodev1/master/azuredeploy.json --parameters @azuredeploy.parameters.json
+     az group deployment create -g DemoRGJSON --template-uri https://raw.githubusercontent.com/MourIdri/azureiaascodev1/master/azuredeploy.json --parameters @azuredeploy.parameters.json
     
 # end of demo 2
