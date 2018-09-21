@@ -8,7 +8,7 @@ az storage account create --location westeurope --name azessentialsdemo --resour
 az network vnet create --resource-group RGAZESSENTIALS --location francecentral --name azdaysvnet --address-prefix 10.100.0.0/14  --subnet-name Subnet1 --subnet-prefix 10.100.1.0/24
 
 # Create a public IP address for the front end web app VVV
-az network public-ip create --resource-group RGAZESSENTIALS --name loaded-balanced-front-web-public-ip --dns-name demofrontweb --allocation-method Static
+az network public-ip create --resource-group RGAZESSENTIALS --name loaded-balanced-front-web-public-ip --dns-name demo2frontweb --allocation-method Static
 
 # Create an Azure Load Balancer.
 az network lb create --resource-group RGAZESSENTIALS --name load-balancer-front-end-web --public-ip-address loaded-balanced-front-web-public-ip --frontend-ip-name demo-front-end-pool --backend-pool-name demo-front-end-backend-pool
