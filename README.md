@@ -6,25 +6,25 @@ Creation VM via Portal and cli
 
    0.1 : Env & Network _ Create RG 
        
-    >_ az group create --name DemoRG --location francecentral
+     az group create --name DemoRG --location francecentral
 
    0.2 : Env & Network _ Create Vnet and subnets
      
-    >_ az network vnet create --resource-group DemoRG --location francecentral --name DemoVnet --address-prefix 192.168.240.0/24  --subnet-name Subnet1 --subnet-prefix 192.168.240.0/28
-    >_ az network vnet subnet create --address-prefix 192.168.245.16/28 --name Subnet2 --resource-group DemoRG --vnet-name DemoVnet
-    >_ az network vnet subnet create --address-prefix 192.168.245.32/28 --name Subnet3 --resource-group DemoRG --vnet-name DemoVnet
-    >_ az network vnet subnet create --address-prefix 192.168.245.48/28 --name Subnet4 --resource-group DemoRG --vnet-name DemoVnet
+     az network vnet create --resource-group DemoRG --location francecentral --name DemoVnet --address-prefix 192.168.240.0/24  --subnet-name Subnet1 --subnet-prefix 192.168.240.0/28
+     az network vnet subnet create --address-prefix 192.168.245.16/28 --name Subnet2 --resource-group DemoRG --vnet-name DemoVnet
+     az network vnet subnet create --address-prefix 192.168.245.32/28 --name Subnet3 --resource-group DemoRG --vnet-name DemoVnet
+     az network vnet subnet create --address-prefix 192.168.245.48/28 --name Subnet4 --resource-group DemoRG --vnet-name DemoVnet
 
    0.3 : Env & Network _ Create security groups and update subnets
 
     # Create NSG1
-    >_ az network nsg create --resource-group DemoRG --name NSG1
+     az network nsg create --resource-group DemoRG --name NSG1
     # Create a network security group rule for port 80.
-    >_ az network nsg rule create --resource-group DemoRG --nsg-name NSG1 --name NGS1-80_in \
+     az network nsg rule create --resource-group DemoRG --nsg-name NSG1 --name NGS1-80_in \
       --protocol tcp --direction inbound  --source-address-prefix '*' --source-port-range '*' \
       --destination-address-prefix '*' --destination-port-range 80 --access allow --priority 1001
     # Update Subnet1 with NSG1
-    >_ az network vnet subnet update --name Subnet1 --resource-group DemoRG --vnet-name DemoVnet --network-security-group NSG1
+     az network vnet subnet update --name Subnet1 --resource-group DemoRG --vnet-name DemoVnet --network-security-group NSG1
 
     # Create NSG2
     >_ az network nsg create --resource-group DemoRG --name NSG2
@@ -138,9 +138,8 @@ Demo 2 :
 
    2.1 : Resize the VMs and monitor the traffic if the service is still available. 
    
-    #Create a storage account
-    >_ az storage account create --location francecentral --name changemynamesince this is unique --resource-group DemoRG --sku Standard_LRS
-    az vm resize --resource-group myResourceGroup --name myVM --size Standard_DS3_v2
+    # Resize the VM
+
     >_ az vm resize --resource-group --resource-group DemoRG --name ub-16-front-web-1 --size Standard_DS3_v2
 
    2.2 : Go to your resource group and check in "Automation script" you will see the deployed resources as a template with some languages
