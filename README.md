@@ -90,7 +90,7 @@ Creation VM via Portal and cli
       az network nic create --resource-group DemoRG --name NIC-VM4 --vnet-name DemoVnet  --subnet Subnet4
       
       # Create the VM admin :
-      az vm create --resource-group DemoRG --name VM4 --admin-password M0nP@ssw0rd! --admin-username demo --nics NIC-VM4 --image win2016datacenter --size Standard_B2ms --os-disk-size-gb 32    
+      az vm create --resource-group DemoRG --name VM4 --admin-password M0nP@ssw0rd! --admin-username demo --nics NIC-VM4 --image win2016datacenter --size Standard_B2ms 
 
 # end of demo 1
 
