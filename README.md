@@ -84,7 +84,7 @@ Creation VM via Portal and cli
       az vm create --resource-group DemoRG --name VM3 --admin-password M0nP@ssw0rd! --admin-username demo --nics NIC-VM3 --image UbuntuLTS --size Standard_DS2_v2 --os-disk-size-gb 32 
       
      # Attach a New Disk to the VM storage 
-      az vm disk attach -g DemoRG --vm-name vm-storage --disk vm-storage-disk-1 --new --size-gb 50
+      az vm disk attach -g DemoRG --vm-name VM3 --disk vm-storage-disk-1 --new --size-gb 50
   
       # Create NIC for the VM admin :
       az network nic create --resource-group DemoRG --name NIC-VM4 --vnet-name DemoVnet  --subnet Subnet4
