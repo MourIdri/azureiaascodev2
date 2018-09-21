@@ -140,3 +140,7 @@ done
 #    az vm update --resource-group RGAZESSENTIALS --name ub-16-demo-db-$i --set tags.Envirronment=Demo tags.Owner=Teacher
 #done
 
+
+
+
+
