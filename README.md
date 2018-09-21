@@ -68,52 +68,31 @@ Creation VM via Portal and cli
      # Create NIC for the VM front :
       az network nic create \
     --resource-group DemoRG --name NIC-VM1 \
-    --vnet-name DemoVnet  --subnet Subnet1 \
-    --network-security-group NGS1 \
+    --vnet-name DemoVnet  --subnet Subnet1 
+    
      # Create the VM front :
-      az vm create --resource-group DemoRG --name VM1 --admin-password M0nP@ssw0rd! --admin-username demo \
-     --nics NIC-VM1 \ 
-     --image UbuntuLTS \
-     --size Standard_B2ms --os-disk-size-gb 32
+      az vm create --resource-group DemoRG --name VM1 --admin-password M0nP@ssw0rd! --admin-username demo --nics NIC-VM1  --image UbuntuLTS --size Standard_B2ms --os-disk-size-gb 32
  
       # Create NIC for the VM middle :
-      az network nic create \
-    --resource-group DemoRG --name NIC-VM2 \
-    --vnet-name DemoVnet  --subnet Subnet2 \
-    --network-security-group NGS2 \
-     # Create the VM front :
-      az vm create --resource-group DemoRG --name VM2 --admin-password M0nP@ssw0rd! --admin-username demo \
-     --nics NIC-VM2 \ 
-     --image UbuntuLTS \
-     --size Standard_DS2_v2 --os-disk-size-gb 32
+      az network nic create --resource-group DemoRG --name NIC-VM2 --vnet-name DemoVnet  --subnet Subnet2
+      
+     # Create the VM middle :
+      az vm create --resource-group DemoRG --name VM2 --admin-password M0nP@ssw0rd! --admin-username demo --nics NIC-VM2 --image UbuntuLTS --size Standard_DS2_v2 --os-disk-size-gb 32
  
       # Create NIC for the VM storage :
-      az network nic create \
-    --resource-group DemoRG --name NIC-VM3 \
-    --vnet-name DemoVnet  --subnet Subnet3 \
-    --network-security-group NGS3 \
-     # Create the VM front :
-      az vm create --resource-group DemoRG --name VM3 --admin-password M0nP@ssw0rd! --admin-username demo \
-     --nics NIC-VM3 \ 
-     --image UbuntuLTS \
-     --size Standard_DS2_v2 --os-disk-size-gb 32
-      az vm disk attach \
-     -g DemoRG \
-     --vm-name vm-storage \
-     --disk vm-storage-disk-1 \
-     --new \
-     --size-gb 50
+      az network nic create --resource-group DemoRG --name NIC-VM3 --vnet-name DemoVnet  --subnet Subnet3 
+      
+     # Create the VM Storage :
+      az vm create --resource-group DemoRG --name VM3 --admin-password M0nP@ssw0rd! --admin-username demo --nics NIC-VM3 --image UbuntuLTS --size Standard_DS2_v2 --os-disk-size-gb 32 
+      
+     # Attach a New Disk to the VM storage 
+      az vm disk attach -g DemoRG --vm-name vm-storage --disk vm-storage-disk-1 --new --size-gb 50
   
       # Create NIC for the VM admin :
-      az network nic create \
-    --resource-group DemoRG --name NIC-VM4 \
-    --vnet-name DemoVnet  --subnet Subnet4 \
-    --network-security-group NGS4 \
-     # Create the VM front :
-      az vm create --resource-group DemoRG --name VM4 --admin-password M0nP@ssw0rd! --admin-username demo \
-     --nics NIC-VM4 \ 
-     --image win2016datacenter \
-     --size Standard_B2ms --os-disk-size-gb 32    
+      az network nic create --resource-group DemoRG --name NIC-VM4 --vnet-name DemoVnet  --subnet Subnet4
+      
+      # Create the VM admin :
+      az vm create --resource-group DemoRG --name VM4 --admin-password M0nP@ssw0rd! --admin-username demo --nics NIC-VM4 --image win2016datacenter --size Standard_B2ms --os-disk-size-gb 32    
 
 # end of demo 1
 
