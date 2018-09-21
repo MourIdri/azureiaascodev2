@@ -119,9 +119,7 @@ Demo 2 :
 
      az vm resize --resource-group --resource-group DemoRG --name ub-16-front-web-1 --size Standard_DS3_v2
 
-   2.2 : Go to your resource group and check in "Automation script" you will see the deployed resources as a template with some languages
-
-   2.3 : Deploy resource group with a VM from a Json. Open the Azure Cli and proceed : 
+   2.2 : Deploy resource group with a VM from a Json. Open the Azure Cli and proceed : 
    
     #Download the template and the paramters uisng this 
      wget https://raw.githubusercontent.com/MourIdri/azureiaascodev1/master/azuredeploy.json
@@ -130,5 +128,7 @@ Demo 2 :
      az group create --name DemoRGJSON --location "westeurope"
     #Start the deploiment using this command : 
      az group deployment create -g DemoRGJSON --template-uri https://raw.githubusercontent.com/MourIdri/azureiaascodev1/master/azuredeploy.json --parameters @azuredeploy.parameters.json
-    
+
+   2.3 : Using blob storage for static content
+
 # end of demo 2
