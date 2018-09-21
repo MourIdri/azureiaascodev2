@@ -118,7 +118,8 @@ Demo 2 :
     # Resize the VM
 
      az vm resize --resource-group --resource-group DemoRG --name ub-16-front-web-1 --size Standard_DS3_v2
-
+     #The service is still up since were are in an availibility set
+  
    2.2 : Deploy resource group with a VM from a Json. Open the Azure Cli and proceed : 
    
     #Download the template and the paramters uisng this 
