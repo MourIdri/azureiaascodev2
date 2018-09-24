@@ -92,6 +92,22 @@ Creation VM via Portal and cli
       # Create the VM admin :
       az vm create --resource-group DemoRG --name VM4 --admin-password M0nP@ssw0rd! --admin-username demo --nics NIC-VM4 --image win2016datacenter --size Standard_B2ms 
 
+   1.3 : Compute & Storage _ Update VMs with the code :
+   
+      # Update VM1
+      az vm extension set --resource-group DemoRG --vm-name VM1 --name customScript --publisher Microsoft.Azure.Extensions \
+   --settings '{"fileUris": ["https://raw.githubusercontent.com/fbouteruche/RateAzureEssentials/master/scripts/setup_front.sh"],"commandToExecute": "./setup_front.sh"}'
+   
+    
+      # Update VM2
+      az vm extension set --resource-group DemoRG --vm-name VM2 --name customScript --publisher Microsoft.Azure.Extensions \
+   --settings '{"fileUris": ["https://raw.githubusercontent.com/fbouteruche/RateAzureEssentials/master/scripts/setup_middle.sh"],"commandToExecute": "./setup_middle.sh"}'
+
+   
+      # Update VM3
+      az vm extension set --resource-group DemoRG --vm-name VM3 --name customScript --publisher Microsoft.Azure.Extensions \
+   --settings '{"fileUris": ["https://raw.githubusercontent.com/fbouteruche/RateAzureEssentials/master/scripts/setup_mongodb.sh"],"commandToExecute": "./setup_mongodb.sh"}'
+ 
 # end of demo 1
 
 # start of demo 2
