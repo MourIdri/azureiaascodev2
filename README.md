@@ -1,4 +1,4 @@
-# AZURE Essentials demos
+# AZURE ESSENTIALS IaaS DEMOS
 
 # start of demo 1 
 
