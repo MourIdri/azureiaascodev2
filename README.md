@@ -146,6 +146,9 @@ Demo 2 :
     #Start the deploiment using this command : 
      az group deployment create -g DemoRGJSON --template-uri https://raw.githubusercontent.com/MourIdri/azureiaascodev1/master/azuredeploy.json --parameters @azuredeploy.parameters.json
 
-   2.3 : Using blob storage for static content 
+   2.3 : Using blob storage for static content  # The Static pages are avialble here : 
+    
+     # The Static pages are avialble here : https://github.com/MourIdri/flaskgattling/tree/master/frontmarket 
+     make sure to change the url of the POST command in the registering form otherwhise it will not respond
 
 # end of demo 2
