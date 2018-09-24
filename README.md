@@ -148,7 +148,7 @@ Demo 2 :
 
    2.3 : Using blob storage for static content  # The Static pages are avialble here : 
     
-     # The Static pages are avialble here : https://github.com/MourIdri/flaskgattling/tree/master/frontmarket 
+     # The Static pages are available here : https://github.com/MourIdri/flaskgattling/tree/master/frontmarket 
      make sure to change the url of the POST command in the registering form otherwhise it will not respond
 
 # end of demo 2
