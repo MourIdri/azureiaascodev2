@@ -1,4 +1,4 @@
-# AZURE ESSENTIALS Essentials
+# AZURE Essentials demos
 
 # start of demo 1 
 
@@ -95,18 +95,18 @@ Creation VM via Portal and cli
    1.3 : Compute & Storage _ Update VMs with the code :
    
       # Update VM1
-      az vm extension set --resource-group DemoRG --vm-name VM1 --name customScript --publisher Microsoft.Azure.Extensions \
-   --settings '{"fileUris": ["https://raw.githubusercontent.com/fbouteruche/RateAzureEssentials/master/scripts/setup_front.sh"],"commandToExecute": "./setup_front.sh"}'
+      az vm extension set --resource-group DemoRG --vm-name VM1 --name customScript --publisher Microsoft.Azure.Extensions
+      --settings '{"fileUris": ["https://raw.githubusercontent.com/fbouteruche/RateAzureEssentials/master/scripts/setup_front.sh"],"commandToExecute": "./setup_front.sh"}'
    
     
       # Update VM2
-      az vm extension set --resource-group DemoRG --vm-name VM2 --name customScript --publisher Microsoft.Azure.Extensions \
-   --settings '{"fileUris": ["https://raw.githubusercontent.com/fbouteruche/RateAzureEssentials/master/scripts/setup_middle.sh"],"commandToExecute": "./setup_middle.sh"}'
+      az vm extension set --resource-group DemoRG --vm-name VM2 --name customScript --publisher Microsoft.Azure.Extensions
+      --settings '{"fileUris": ["https://raw.githubusercontent.com/fbouteruche/RateAzureEssentials/master/scripts/setup_middle.sh"],"commandToExecute": "./setup_middle.sh"}'
 
    
       # Update VM3
-      az vm extension set --resource-group DemoRG --vm-name VM3 --name customScript --publisher Microsoft.Azure.Extensions \
-   --settings '{"fileUris": ["https://raw.githubusercontent.com/fbouteruche/RateAzureEssentials/master/scripts/setup_mongodb.sh"],"commandToExecute": "./setup_mongodb.sh"}'
+      az vm extension set --resource-group DemoRG --vm-name VM3 --name customScript --publisher Microsoft.Azure.Extensions
+      --settings '{"fileUris": ["https://raw.githubusercontent.com/fbouteruche/RateAzureEssentials/master/scripts/setup_mongodb.sh"],"commandToExecute": "./setup_mongodb.sh"}'
  
 # end of demo 1
 
