@@ -2,11 +2,13 @@
 
 # start of demo 1 
 
-Creation VM via Portal and cli
+Creation VM via Portal 
 
    0.1 : Env & Network _ Create RG 
        
      az group create --name DemoRG --location francecentral
+     
+     ![alt text](https://rgcloudmouradgeneraleuro.blob.core.windows.net/mouradpublicontainer/AZ_ESSEN_1.jpg) 
 
    0.2 : Env & Network _ Create Vnet and subnets
      
