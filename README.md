@@ -11,14 +11,14 @@ Creation VM via Portal and cli
       CLI > az group create --name DemoRG --location francecentral
      
 
-   0.2 : Env & Network _ Create Vnet and subnets
+   0.2 : Env & Network _ Create Vnet and subnet
    
    ![alt text](https://rgcloudmouradgeneraleuro.blob.core.windows.net/mouradpublicontainer/AZ_ESSEN_2.jpg) 
      
      CLI > az network vnet create --resource-group DemoRG --location francecentral --name DemoVnet --address-prefix 192.168.245.0/24  --subnet-name Subnet1 --subnet-prefix 192.168.245.0/28
 
 
-   0.3 : Env & Network _ Create security groups and update subnets
+   0.3 : Env & Network _ Create security group and update subnet
 
    - Create NSG1 :
    
@@ -46,56 +46,36 @@ Creation VM via Portal and cli
    
     CLI > az network public-ip create --resource-group DemoRG --name front-end-pu-ip --dns-name azessentialsfront --allocation-method Static
 
-   1.1 : Compute & Storage _ Create Storage Account for general purposes
+   1.1 : Compute & Storage _ Create frontend compute 
+    
+   ![alt text](https://rgcloudmouradgeneraleuro.blob.core.windows.net/mouradpublicontainer/AZ_ESSEN_6.jpg) 
    
-    #Create a storage account 
-     az storage account create --location westeurope --name changemynametobeunique --resource-group DemoRG --sku Standard_LRS
-
-   1.2 : Compute & Storage _ Create frontend compute 
-     
-     # Create NIC for the VM front :
-      az network nic create --resource-group DemoRG --name NIC-VM1 --vnet-name DemoVnet  --subnet Subnet1 
+   ![alt text](https://rgcloudmouradgeneraleuro.blob.core.windows.net/mouradpublicontainer/AZ_ESSEN_7.jpg) 
+   
+   ![alt text](https://rgcloudmouradgeneraleuro.blob.core.windows.net/mouradpublicontainer/AZ_ESSEN_7_1.jpg) 
+   
+   ![alt text](https://rgcloudmouradgeneraleuro.blob.core.windows.net/mouradpublicontainer/AZ_ESSEN_7_2.jpg) 
+   
+   ![alt text](https://rgcloudmouradgeneraleuro.blob.core.windows.net/mouradpublicontainer/AZ_ESSEN_7_3.jpg) 
+   
+   ![alt text](https://rgcloudmouradgeneraleuro.blob.core.windows.net/mouradpublicontainer/AZ_ESSEN_7_4.jpg) 
+   
+   ![alt text](https://rgcloudmouradgeneraleuro.blob.core.windows.net/mouradpublicontainer/AZ_ESSEN_7_4_1.jpg) 
+   
+   ![alt text](https://rgcloudmouradgeneraleuro.blob.core.windows.net/mouradpublicontainer/AZ_ESSEN_7_5.jpg) 
+   
+   ![alt text](https://rgcloudmouradgeneraleuro.blob.core.windows.net/mouradpublicontainer/AZ_ESSEN_7_6.jpg) 
+   
+     # Create the NIC for the VM front :
+    CLI > az network nic create --resource-group DemoRG --name NIC-VM1 --vnet-name DemoVnet  --subnet Subnet1 
     
      # Create the VM front :
-      az vm create --resource-group DemoRG --name VM1 --admin-password M0nP@ssw0rd! --admin-username demo --nics NIC-VM1  --image UbuntuLTS --size Standard_B2ms --os-disk-size-gb 32
- 
-      # Create NIC for the VM middle :
-      az network nic create --resource-group DemoRG --name NIC-VM2 --vnet-name DemoVnet  --subnet Subnet2
-      
-     # Create the VM middle :
-      az vm create --resource-group DemoRG --name VM2 --admin-password M0nP@ssw0rd! --admin-username demo --nics NIC-VM2 --image UbuntuLTS --size Standard_DS2_v2 --os-disk-size-gb 32
- 
-      # Create NIC for the VM storage :
-      az network nic create --resource-group DemoRG --name NIC-VM3 --vnet-name DemoVnet  --subnet Subnet3 
-      
-     # Create the VM Storage :
-      az vm create --resource-group DemoRG --name VM3 --admin-password M0nP@ssw0rd! --admin-username demo --nics NIC-VM3 --image UbuntuLTS --size Standard_DS2_v2 --os-disk-size-gb 32 
-      
-     # Attach a New Disk to the VM storage 
-      az vm disk attach -g DemoRG --vm-name VM3 --disk vm-storage-disk-1 --new --size-gb 50
-  
-      # Create NIC for the VM admin :
-      az network nic create --resource-group DemoRG --name NIC-VM4 --vnet-name DemoVnet  --subnet Subnet4
-      
-      # Create the VM admin :
-      az vm create --resource-group DemoRG --name VM4 --admin-password M0nP@ssw0rd! --admin-username demo --nics NIC-VM4 --image win2016datacenter --size Standard_B2ms 
+    CLI > az vm create --resource-group DemoRG --name VM1 --admin-password M0nP@ssw0rd! --admin-username demo --nics NIC-VM1  --image UbuntuLTS --size Standard_B2ms --os-disk-size-gb 32
 
-   1.3 : Compute & Storage _ Update VMs with the code :
-   
-      # Update VM1
-      az vm extension set --resource-group DemoRG --vm-name VM1 --name customScript --publisher Microsoft.Azure.Extensions
-      --settings '{"fileUris": ["https://raw.githubusercontent.com/fbouteruche/RateAzureEssentials/master/scripts/setup_front.sh"],"commandToExecute": "./setup_front.sh"}'
-   
-    
-      # Update VM2
-      az vm extension set --resource-group DemoRG --vm-name VM2 --name customScript --publisher Microsoft.Azure.Extensions
-      --settings '{"fileUris": ["https://raw.githubusercontent.com/fbouteruche/RateAzureEssentials/master/scripts/setup_middle.sh"],"commandToExecute": "./setup_middle.sh"}'
 
-   
-      # Update VM3
-      az vm extension set --resource-group DemoRG --vm-name VM3 --name customScript --publisher Microsoft.Azure.Extensions
-      --settings '{"fileUris": ["https://raw.githubusercontent.com/fbouteruche/RateAzureEssentials/master/scripts/setup_mongodb.sh"],"commandToExecute": "./setup_mongodb.sh"}'
- 
+
+
+
 # end of demo 1
 
 # start of demo 2
