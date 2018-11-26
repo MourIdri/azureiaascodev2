@@ -8,15 +8,17 @@ Creation VM via Portal and cli
        
    ![alt text](https://rgcloudmouradgeneraleuro.blob.core.windows.net/mouradpublicontainer/AZ_ESSEN_1.jpg) 
    
-      az group create --name DemoRG --location francecentral
+      > az group create --name DemoRG --location francecentral
      
 
    0.2 : Env & Network _ Create Vnet and subnets
-     
-     az network vnet create --resource-group DemoRG --location francecentral --name DemoVnet --address-prefix 192.168.245.0/24  --subnet-name Subnet1 --subnet-prefix 192.168.245.0/28
-     az network vnet subnet create --address-prefix 192.168.245.16/28 --name Subnet2 --resource-group DemoRG --vnet-name DemoVnet
-     az network vnet subnet create --address-prefix 192.168.245.32/28 --name Subnet3 --resource-group DemoRG --vnet-name DemoVnet
-     az network vnet subnet create --address-prefix 192.168.245.48/28 --name Subnet4 --resource-group DemoRG --vnet-name DemoVnet
+   
+   ![alt text](https://rgcloudmouradgeneraleuro.blob.core.windows.net/mouradpublicontainer/AZ_ESSEN_2.jpg) 
+   
+   ![alt text](https://rgcloudmouradgeneraleuro.blob.core.windows.net/mouradpublicontainer/AZ_ESSEN_3.jpg) 
+   
+     > az network vnet create --resource-group DemoRG --location francecentral --name DemoVnet --address-prefix 192.168.245.0/24  --subnet-name Subnet1 --subnet-prefix 192.168.245.0/28
+
 
    0.3 : Env & Network _ Create security groups and update subnets
 
