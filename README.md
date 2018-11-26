@@ -14,22 +14,27 @@ Creation VM via Portal and cli
    0.2 : Env & Network _ Create Vnet and subnets
    
    ![alt text](https://rgcloudmouradgeneraleuro.blob.core.windows.net/mouradpublicontainer/AZ_ESSEN_2.jpg) 
-   
-   ![alt text](https://rgcloudmouradgeneraleuro.blob.core.windows.net/mouradpublicontainer/AZ_ESSEN_3.jpg) 
-   
+     
      > az network vnet create --resource-group DemoRG --location francecentral --name DemoVnet --address-prefix 192.168.245.0/24  --subnet-name Subnet1 --subnet-prefix 192.168.245.0/28
 
 
    0.3 : Env & Network _ Create security groups and update subnets
 
+   # Create NSG1 :
+   ![alt text](https://rgcloudmouradgeneraleuro.blob.core.windows.net/mouradpublicontainer/AZ_ESSEN_4.jpg) 
+   # Create a network security group rule for port 80 :
+   ![alt text](https://rgcloudmouradgeneraleuro.blob.core.windows.net/mouradpublicontainer/AZ_ESSEN_4.jpg) 
+   # Update Subnet1 with NSG1 :   
+   ![alt text](https://rgcloudmouradgeneraleuro.blob.core.windows.net/mouradpublicontainer/AZ_ESSEN_5.jpg) 
+   
     # Create NSG1
-     az network nsg create --resource-group DemoRG --name NSG1
+     > az network nsg create --resource-group DemoRG --name NSG1
     # Create a network security group rule for port 80.
-     az network nsg rule create --resource-group DemoRG --nsg-name NSG1 --name NGS1-80_in \
+     > az network nsg rule create --resource-group DemoRG --nsg-name NSG1 --name NGS1-80_in \
       --protocol tcp --direction inbound  --source-address-prefix '*' --source-port-range '*' \
       --destination-address-prefix '*' --destination-port-range 80 --access allow --priority 1001
     # Update Subnet1 with NSG1
-     az network vnet subnet update --name Subnet1 --resource-group DemoRG --vnet-name DemoVnet --network-security-group NSG1
+     > az network vnet subnet update --name Subnet1 --resource-group DemoRG --vnet-name DemoVnet --network-security-group NSG1
 
     # Create NSG2
      az network nsg create --resource-group DemoRG --name NSG2
