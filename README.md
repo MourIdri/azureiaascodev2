@@ -78,71 +78,70 @@ Creation VM via Portal and cli
    
      
      
-     # Create the NIC for the VM front :
+    # Create the NIC for the VM front :
     CLI > az network nic create --resource-group DemoRG --name NIC-VM1 --vnet-name DemoVnet  --subnet Subnet1 
-    
-     # Create the VM front :
+    # Create the VM front :
     CLI > az vm create --resource-group DemoRG --name VM1 --admin-password M0nP@ssw0rd! --admin-username demo --nics NIC-VM1  --image UbuntuLTS --size Standard_B2ms --os-disk-size-gb 32
 
 
    1.2 : Using CLI to create subnets, NSGs rules and VMs
 
     # Create the subnet 2 :
-     CLI > az network vnet subnet create --address-prefix 192.168.245.16/28 --name Subnet2 --resource-group DemoRG --vnet-name DemoVnet
+    CLI > az network vnet subnet create --address-prefix 192.168.245.16/28 --name Subnet2 --resource-group DemoRG --vnet-name DemoVnet
     # Create the subnet 3 :     
-     CLI > az network vnet subnet create --address-prefix 192.168.245.32/28 --name Subnet3 --resource-group DemoRG --vnet-name DemoVnet
+    CLI > az network vnet subnet create --address-prefix 192.168.245.32/28 --name Subnet3 --resource-group DemoRG --vnet-name DemoVnet
     # Create the subnet 4 :     
-     CLI > az network vnet subnet create --address-prefix 192.168.245.48/28 --name Subnet4 --resource-group DemoRG --vnet-name DemoVnet
+    CLI > az network vnet subnet create --address-prefix 192.168.245.48/28 --name Subnet4 --resource-group DemoRG --vnet-name DemoVnet
 
     # Create NSG2
-     CLI > az network nsg create --resource-group DemoRG --name NSG2
+    CLI > az network nsg create --resource-group DemoRG --name NSG2
     #  Create a network security group rule for port 80. 
-     CLI > az network nsg rule create --resource-group DemoRG --nsg-name NSG2 --name NGS2-80_in \
+    CLI > az network nsg rule create --resource-group DemoRG --nsg-name NSG2 --name NGS2-80_in \
      --protocol tcp --direction inbound  --source-address-prefix '*' --source-port-range '*' \
      --destination-address-prefix '*' --destination-port-range 80 --access allow --priority 1002
     # Update Subnet2 with NSG2
-     CLI > az network vnet subnet update --name Subnet2 --resource-group DemoRG --vnet-name DemoVnet --network-security-group NSG2
+    CLI > az network vnet subnet update --name Subnet2 --resource-group DemoRG --vnet-name DemoVnet --network-security-group NSG2
     # Create NSG3
-     CLI > az network nsg create --resource-group DemoRG --name NSG3
+    CLI > az network nsg create --resource-group DemoRG --name NSG3
     #Create a network security group rule for port 27018 MONGODB.
-     CLI > az network nsg rule create --resource-group DemoRG --nsg-name NSG3 --name NSG3-27018_in \
+    CLI > az network nsg rule create --resource-group DemoRG --nsg-name NSG3 --name NSG3-27018_in \
     --protocol tcp --direction inbound  --source-address-prefix '*' --source-port-range '*' \
     --destination-address-prefix '*' --destination-port-range 27018 --access allow --priority 1003
     # Update Subnet3 with NSG3
-     CLI > az network vnet subnet update --name Subnet3 --resource-group DemoRG --vnet-name DemoVnet --network-security-group NSG3
+    CLI > az network vnet subnet update --name Subnet3 --resource-group DemoRG --vnet-name DemoVnet --network-security-group NSG3
     # Create NSG4
-     CLI > az network nsg create --resource-group DemoRG --name NSG4
+    CLI > az network nsg create --resource-group DemoRG --name NSG4
     #Create a network security group rule for port 3389 RDP.
-     CLI > az network nsg rule create --resource-group DemoRG --nsg-name NSG4 --name NSG4-3389_in \
+    CLI > az network nsg rule create --resource-group DemoRG --nsg-name NSG4 --name NSG4-3389_in \
     --protocol tcp --direction inbound  --source-address-prefix '*' --source-port-range '*' \
     --destination-address-prefix '*' --destination-port-range 3389 --access allow --priority 1004
     # Update Subnet4 with NSG4
-     CLI > az network vnet subnet update --name Subnet4 --resource-group DemoRG --vnet-name DemoVnet --network-security-group NSG4
+    CLI > az network vnet subnet update --name Subnet4 --resource-group DemoRG --vnet-name DemoVnet --network-security-group NSG4
 
-      # Create NIC for the VM2 middle :
-      CLI > az network nic create --resource-group DemoRG --name NIC-VM2 --vnet-name DemoVnet  --subnet Subnet2
-     # Create the VM2 middle :
-      CLI > az vm create --resource-group DemoRG --name VM2 --admin-password M0nP@ssw0rd! --admin-username demo --nics NIC-VM2 --image UbuntuLTS --size Standard_DS2_v2 --os-disk-size-gb 32
+    # Create NIC for the VM2 middle :
+    CLI > az network nic create --resource-group DemoRG --name NIC-VM2 --vnet-name DemoVnet  --subnet Subnet2
+    # Create the VM2 middle :
+    CLI > az vm create --resource-group DemoRG --name VM2 --admin-password M0nP@ssw0rd! --admin-username demo --nics NIC-VM2 --image UbuntuLTS --size Standard_DS2_v2 --os-disk-size-gb 32
  
-      # Create NIC for the VM3 storage :
-      CLI > az network nic create --resource-group DemoRG --name NIC-VM3 --vnet-name DemoVnet  --subnet Subnet3 
-     # Create the VM3 Storage :
-      CLI > az vm create --resource-group DemoRG --name VM3 --admin-password M0nP@ssw0rd! --admin-username demo --nics NIC-VM3 --image UbuntuLTS --size Standard_DS2_v2 --os-disk-size-gb 32 
-     # Attach a New Disk to the VM3 storage 
-      CLI > az vm disk attach -g DemoRG --vm-name VM3 --disk vm-storage-disk-1 --new --size-gb 50
+    # Create NIC for the VM3 storage :
+    CLI > az network nic create --resource-group DemoRG --name NIC-VM3 --vnet-name DemoVnet  --subnet Subnet3 
+    # Create the VM3 Storage :
+    CLI > az vm create --resource-group DemoRG --name VM3 --admin-password M0nP@ssw0rd! --admin-username demo --nics NIC-VM3 --image UbuntuLTS --size Standard_DS2_v2 --os-disk-size-gb 32 
+    # Attach a New Disk to the VM3 storage 
+    CLI > az vm disk attach -g DemoRG --vm-name VM3 --disk vm-storage-disk-1 --new --size-gb 50
   
-      # Create NIC for the VM4 admin :
-      CLI > az network nic create --resource-group DemoRG --name NIC-VM4 --vnet-name DemoVnet  --subnet Subnet4
-      # Create the VM4 admin :
-      CLI > az vm create --resource-group DemoRG --name VM4 --admin-password M0nP@ssw0rd! --admin-username demo --nics NIC-VM4 --image win2016datacenter --size Standard_B2ms 
+    # Create NIC for the VM4 admin :
+    CLI > az network nic create --resource-group DemoRG --name NIC-VM4 --vnet-name DemoVnet  --subnet Subnet4
+    # Create the VM4 admin :
+    CLI > az vm create --resource-group DemoRG --name VM4 --admin-password M0nP@ssw0rd! --admin-username demo --nics NIC-VM4 --image win2016datacenter --size Standard_B2ms 
     
-      # Update VM2 with Code
-      az vm extension set --resource-group DemoRG --vm-name VM2 --name customScript --publisher Microsoft.Azure.Extensions
+    # Update VM2 with Code
+    az vm extension set --resource-group DemoRG --vm-name VM2 --name customScript --publisher Microsoft.Azure.Extensions
       --settings '{"fileUris": ["https://raw.githubusercontent.com/fbouteruche/RateAzureEssentials/master/scripts/setup_middle.sh"],"commandToExecute": "./setup_middle.sh"}'
 
    
-      # Update VM3 with Code
-      az vm extension set --resource-group DemoRG --vm-name VM3 --name customScript --publisher Microsoft.Azure.Extensions
+    # Update VM3 with Code
+    az vm extension set --resource-group DemoRG --vm-name VM3 --name customScript --publisher Microsoft.Azure.Extensions
       --settings '{"fileUris": ["https://raw.githubusercontent.com/fbouteruche/RateAzureEssentials/master/scripts/setup_mongodb.sh"],"commandToExecute": "./setup_mongodb.sh"}'
 
 # end of demo 1
@@ -151,8 +150,9 @@ Creation VM via Portal and cli
 
 Preparation for Demo 2 : Before going further open the embeded cli in azure portal. Make sure you can use your default subscription and download the script from here : 
 
-      wget https://raw.githubusercontent.com/MourIdri/azureiaascodev1/master/1_deploy_front_and_back_end_app.sh
-      wget https://raw.githubusercontent.com/MourIdri/azureiaascodev1/master/2_deploy_DB_server.sh
+      Download the file from here : https://raw.githubusercontent.com/MourIdri/azureiaascodev1/master/1_deploy_front_and_back_end_app.sh
+      
+      Download the file from here : https://raw.githubusercontent.com/MourIdri/azureiaascodev1/master/2_deploy_DB_server.sh
       
 Copy- past the content of the script into the CLI portal and let the sequence to finish for both script  since bash is not very effecive... Or use a Linux client with Azcli installed on it, then you can do : 
 
