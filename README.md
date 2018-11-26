@@ -8,65 +8,46 @@ Creation VM via Portal and cli
        
    ![alt text](https://rgcloudmouradgeneraleuro.blob.core.windows.net/mouradpublicontainer/AZ_ESSEN_1.jpg) 
    
-      > az group create --name DemoRG --location francecentral
+      CLI > az group create --name DemoRG --location francecentral
      
 
    0.2 : Env & Network _ Create Vnet and subnets
    
    ![alt text](https://rgcloudmouradgeneraleuro.blob.core.windows.net/mouradpublicontainer/AZ_ESSEN_2.jpg) 
      
-     > az network vnet create --resource-group DemoRG --location francecentral --name DemoVnet --address-prefix 192.168.245.0/24  --subnet-name Subnet1 --subnet-prefix 192.168.245.0/28
+     CLI > az network vnet create --resource-group DemoRG --location francecentral --name DemoVnet --address-prefix 192.168.245.0/24  --subnet-name Subnet1 --subnet-prefix 192.168.245.0/28
 
 
    0.3 : Env & Network _ Create security groups and update subnets
 
-   # Create NSG1 :
+   - Create NSG1 :
+   
    ![alt text](https://rgcloudmouradgeneraleuro.blob.core.windows.net/mouradpublicontainer/AZ_ESSEN_4.jpg) 
-   # Create a network security group rule for port 80 :
+   
+   - Create a network security group rule for port 80 :
+   
    ![alt text](https://rgcloudmouradgeneraleuro.blob.core.windows.net/mouradpublicontainer/AZ_ESSEN_4.jpg) 
-   # Update Subnet1 with NSG1 :   
+   
+   - Update Subnet1 with NSG1 :   
+   
    ![alt text](https://rgcloudmouradgeneraleuro.blob.core.windows.net/mouradpublicontainer/AZ_ESSEN_5.jpg) 
    
     # Create NSG1
-     > az network nsg create --resource-group DemoRG --name NSG1
+    CLI > az network nsg create --resource-group DemoRG --name NSG1
     # Create a network security group rule for port 80.
-     > az network nsg rule create --resource-group DemoRG --nsg-name NSG1 --name NGS1-80_in \
+    CLI > az network nsg rule create --resource-group DemoRG --nsg-name NSG1 --name NGS1-80_in \
       --protocol tcp --direction inbound  --source-address-prefix '*' --source-port-range '*' \
       --destination-address-prefix '*' --destination-port-range 80 --access allow --priority 1001
     # Update Subnet1 with NSG1
-     > az network vnet subnet update --name Subnet1 --resource-group DemoRG --vnet-name DemoVnet --network-security-group NSG1
+    CLI > az network vnet subnet update --name Subnet1 --resource-group DemoRG --vnet-name DemoVnet --network-security-group NSG1
 
-    # Create NSG2
-     az network nsg create --resource-group DemoRG --name NSG2
-    #  Create a network security group rule for port 80. 
-     az network nsg rule create --resource-group DemoRG --nsg-name NSG2 --name NGS2-80_in \
-     --protocol tcp --direction inbound  --source-address-prefix '*' --source-port-range '*' \
-     --destination-address-prefix '*' --destination-port-range 80 --access allow --priority 1002
-    # Update Subnet2 with NSG2
-     az network vnet subnet update --name Subnet2 --resource-group DemoRG --vnet-name DemoVnet --network-security-group NSG2
 
-    # Create NSG3
-     az network nsg create --resource-group DemoRG --name NSG3
-    #Create a network security group rule for port 27018 MONGODB.
-     az network nsg rule create --resource-group DemoRG --nsg-name NSG3 --name NSG3-27018_in \
-    --protocol tcp --direction inbound  --source-address-prefix '*' --source-port-range '*' \
-    --destination-address-prefix '*' --destination-port-range 27018 --access allow --priority 1003
-    # Update Subnet3 with NSG3
-     az network vnet subnet update --name Subnet3 --resource-group DemoRG --vnet-name DemoVnet --network-security-group NSG3
-
-    # Create NSG4
-     az network nsg create --resource-group DemoRG --name NSG4
-    #Create a network security group rule for port 3389 RDP.
-     az network nsg rule create --resource-group DemoRG --nsg-name NSG4 --name NSG4-3389_in \
-    --protocol tcp --direction inbound  --source-address-prefix '*' --source-port-range '*' \
-    --destination-address-prefix '*' --destination-port-range 3389 --access allow --priority 1004
-    # Update Subnet4 with NSG4
-     az network vnet subnet update --name Subnet4 --resource-group DemoRG --vnet-name DemoVnet --network-security-group NSG4
-
-   0.3 : Env & Network _ Public IP for frontend access
+   0.4 : Env & Network _ Public IP for frontend access
+   
+   ![alt text](https://rgcloudmouradgeneraleuro.blob.core.windows.net/mouradpublicontainer/AZ_ESSEN_5.jpg) 
    
     #Create a public IP address for the front end web app VVV
-     az network public-ip create --resource-group DemoRG --name front-end-pu-ip --dns-name azessentialsfront --allocation-method Static
+    CLI > az network public-ip create --resource-group DemoRG --name front-end-pu-ip --dns-name azessentialsfront --allocation-method Static
 
    1.1 : Compute & Storage _ Create Storage Account for general purposes
    
