@@ -65,6 +65,9 @@ Creation VM via Portal and cli
    ![alt text](https://rgcloudmouradgeneraleuro.blob.core.windows.net/mouradpublicontainer/AZ_ESSEN_7_4.jpg) 
    
    
+   You will copy the content of this page https://raw.githubusercontent.com/fbouteruche/RateAzureEssentials/master/scripts/setup_front.sh and save it into a file on your laptop called "setup_front.sh"
+   
+   
    ![alt text](https://rgcloudmouradgeneraleuro.blob.core.windows.net/mouradpublicontainer/AZ_ESSEN_7_4_1.jpg) 
    
    
