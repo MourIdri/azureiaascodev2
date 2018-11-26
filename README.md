@@ -23,30 +23,27 @@ Creation VM via Portal and cli
    - Create NSG1 :
    
    ![alt text](https://rgcloudmouradgeneraleuro.blob.core.windows.net/mouradpublicontainer/AZ_ESSEN_4.jpg) 
+    
+    CLI > az network nsg create --resource-group DemoRG --name NSG1
    
    - Create a network security group rule for port 80 :
    
    ![alt text](https://rgcloudmouradgeneraleuro.blob.core.windows.net/mouradpublicontainer/AZ_ESSEN_4.jpg) 
    
+    CLI > az network nsg rule create --resource-group DemoRG --nsg-name NSG1 --name NGS1-80_in \
+      --protocol tcp --direction inbound  --source-address-prefix '*' --source-port-range '*' \
+      --destination-address-prefix '*' --destination-port-range 80 --access allow --priority 1001   
+   
    - Update Subnet1 with NSG1 :   
    
    ![alt text](https://rgcloudmouradgeneraleuro.blob.core.windows.net/mouradpublicontainer/AZ_ESSEN_5.jpg) 
    
-    # Create NSG1
-    CLI > az network nsg create --resource-group DemoRG --name NSG1
-    # Create a network security group rule for port 80.
-    CLI > az network nsg rule create --resource-group DemoRG --nsg-name NSG1 --name NGS1-80_in \
-      --protocol tcp --direction inbound  --source-address-prefix '*' --source-port-range '*' \
-      --destination-address-prefix '*' --destination-port-range 80 --access allow --priority 1001
-    # Update Subnet1 with NSG1
     CLI > az network vnet subnet update --name Subnet1 --resource-group DemoRG --vnet-name DemoVnet --network-security-group NSG1
-
 
    0.4 : Env & Network _ Public IP for frontend access
    
    ![alt text](https://rgcloudmouradgeneraleuro.blob.core.windows.net/mouradpublicontainer/AZ_ESSEN_5.jpg) 
    
-    #Create a public IP address for the front end web app VVV
     CLI > az network public-ip create --resource-group DemoRG --name front-end-pu-ip --dns-name azessentialsfront --allocation-method Static
 
    1.1 : Compute & Storage _ Create Storage Account for general purposes
