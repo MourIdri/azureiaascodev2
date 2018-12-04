@@ -22,7 +22,7 @@ Creation VM via Portal and cli
 
    - Create NSG1 :
    
-   ![alt text](https://rgcloudmouradgeneraleuro.blob.core.windows.net/mouradpublicontainer/AZ_ESSEN_4.jpg) 
+   ![alt text](https://rgcloudmouradgeneraleuro.blob.core.windows.net/mouradpublicontainer/AZ_ESSEN_3.jpg) 
     
     CLI > az network nsg create --resource-group DemoRG --name NSG1
    
