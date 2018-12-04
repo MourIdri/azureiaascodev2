@@ -87,62 +87,56 @@ Creation VM via Portal and cli
    1.2 : Using CLI to create subnets, NSGs rules and VMs
 
     # Create the subnet 2 :
-    CLI > az network vnet subnet create --address-prefix 192.168.245.16/28 --name Subnet2 --resource-group DemoRG --vnet-name DemoVnet
+    az network vnet subnet create --address-prefix 192.168.245.16/28 --name Subnet2 --resource-group DemoRG --vnet-name DemoVnet
     # Create the subnet 3 :     
-    CLI > az network vnet subnet create --address-prefix 192.168.245.32/28 --name Subnet3 --resource-group DemoRG --vnet-name DemoVnet
+    az network vnet subnet create --address-prefix 192.168.245.32/28 --name Subnet3 --resource-group DemoRG --vnet-name DemoVnet
     # Create the subnet 4 :     
-    CLI > az network vnet subnet create --address-prefix 192.168.245.48/28 --name Subnet4 --resource-group DemoRG --vnet-name DemoVnet
+    az network vnet subnet create --address-prefix 192.168.245.48/28 --name Subnet4 --resource-group DemoRG --vnet-name DemoVnet
 
     # Create NSG2
-    CLI > az network nsg create --resource-group DemoRG --name NSG2
+    az network nsg create --resource-group DemoRG --name NSG2
     #  Create a network security group rule for port 80. 
-    CLI > az network nsg rule create --resource-group DemoRG --nsg-name NSG2 --name NGS2-80_in \
-     --protocol tcp --direction inbound  --source-address-prefix '*' --source-port-range '*' \
-     --destination-address-prefix '*' --destination-port-range 80 --access allow --priority 1002
+    az network nsg rule create --resource-group DemoRG --nsg-name NSG2 --name NGS2-80_in --protocol tcp --direction inbound  --source-address-prefix '*' --source-port-range '*' --destination-address-prefix '*' --destination-port-range 80 --access allow --priority 1002
     # Update Subnet2 with NSG2
-    CLI > az network vnet subnet update --name Subnet2 --resource-group DemoRG --vnet-name DemoVnet --network-security-group NSG2
+    az network vnet subnet update --name Subnet2 --resource-group DemoRG --vnet-name DemoVnet --network-security-group NSG2
     # Create NSG3
-    CLI > az network nsg create --resource-group DemoRG --name NSG3
+    az network nsg create --resource-group DemoRG --name NSG3
     #Create a network security group rule for port 27018 MONGODB.
-    CLI > az network nsg rule create --resource-group DemoRG --nsg-name NSG3 --name NSG3-27018_in \
-    --protocol tcp --direction inbound  --source-address-prefix '*' --source-port-range '*' \
-    --destination-address-prefix '*' --destination-port-range 27018 --access allow --priority 1003
+    az network nsg rule create --resource-group DemoRG --nsg-name NSG3 --name NSG3-27018_in --protocol tcp --direction inbound  --source-address-prefix '*' --source-port-range '*' --destination-address-prefix '*' --destination-port-range 27018 --access allow --priority 1003
     # Update Subnet3 with NSG3
-    CLI > az network vnet subnet update --name Subnet3 --resource-group DemoRG --vnet-name DemoVnet --network-security-group NSG3
+    az network vnet subnet update --name Subnet3 --resource-group DemoRG --vnet-name DemoVnet --network-security-group NSG3
     # Create NSG4
-    CLI > az network nsg create --resource-group DemoRG --name NSG4
+    az network nsg create --resource-group DemoRG --name NSG4
     #Create a network security group rule for port 3389 RDP.
-    CLI > az network nsg rule create --resource-group DemoRG --nsg-name NSG4 --name NSG4-3389_in \
+    az network nsg rule create --resource-group DemoRG --nsg-name NSG4 --name NSG4-3389_in \
     --protocol tcp --direction inbound  --source-address-prefix '*' --source-port-range '*' \
     --destination-address-prefix '*' --destination-port-range 3389 --access allow --priority 1004
     # Update Subnet4 with NSG4
-    CLI > az network vnet subnet update --name Subnet4 --resource-group DemoRG --vnet-name DemoVnet --network-security-group NSG4
+    az network vnet subnet update --name Subnet4 --resource-group DemoRG --vnet-name DemoVnet --network-security-group NSG4
 
     # Create NIC for the VM2 middle :
-    CLI > az network nic create --resource-group DemoRG --name NIC-VM2 --vnet-name DemoVnet  --subnet Subnet2
+    az network nic create --resource-group DemoRG --name NIC-VM2 --vnet-name DemoVnet  --subnet Subnet2
     # Create the VM2 middle :
-    CLI > az vm create --resource-group DemoRG --name VM2 --admin-password M0nP@ssw0rd! --admin-username demo --nics NIC-VM2 --image UbuntuLTS --size Standard_DS2_v2 --os-disk-size-gb 32
+    az vm create --resource-group DemoRG --name VM2 --admin-password M0nP@ssw0rd! --admin-username demo --nics NIC-VM2 --image UbuntuLTS --size Standard_DS2_v2 --os-disk-size-gb 32
  
     # Create NIC for the VM3 storage :
-    CLI > az network nic create --resource-group DemoRG --name NIC-VM3 --vnet-name DemoVnet  --subnet Subnet3 
+    az network nic create --resource-group DemoRG --name NIC-VM3 --vnet-name DemoVnet  --subnet Subnet3 
     # Create the VM3 Storage :
-    CLI > az vm create --resource-group DemoRG --name VM3 --admin-password M0nP@ssw0rd! --admin-username demo --nics NIC-VM3 --image UbuntuLTS --size Standard_DS2_v2 --os-disk-size-gb 32 
+    az vm create --resource-group DemoRG --name VM3 --admin-password M0nP@ssw0rd! --admin-username demo --nics NIC-VM3 --image UbuntuLTS --size Standard_DS2_v2 --os-disk-size-gb 32 
     # Attach a New Disk to the VM3 storage 
-    CLI > az vm disk attach -g DemoRG --vm-name VM3 --disk vm-storage-disk-1 --new --size-gb 50
+    az vm disk attach -g DemoRG --vm-name VM3 --disk vm-storage-disk-1 --new --size-gb 50
   
     # Create NIC for the VM4 admin :
-    CLI > az network nic create --resource-group DemoRG --name NIC-VM4 --vnet-name DemoVnet  --subnet Subnet4
+    az network nic create --resource-group DemoRG --name NIC-VM4 --vnet-name DemoVnet  --subnet Subnet4
     # Create the VM4 admin :
-    CLI > az vm create --resource-group DemoRG --name VM4 --admin-password M0nP@ssw0rd! --admin-username demo --nics NIC-VM4 --image win2016datacenter --size Standard_B2ms 
+    az vm create --resource-group DemoRG --name VM4 --admin-password M0nP@ssw0rd! --admin-username demo --nics NIC-VM4 --image win2016datacenter --size Standard_B2ms 
     
     # Update VM2 with Code
-    az vm extension set --resource-group DemoRG --vm-name VM2 --name customScript --publisher Microsoft.Azure.Extensions
-      --settings '{"fileUris": ["https://raw.githubusercontent.com/fbouteruche/RateAzureEssentials/master/scripts/setup_middle.sh"],"commandToExecute": "./setup_middle.sh"}'
+    az vm extension set --resource-group DemoRG --vm-name VM2 --name customScript --publisher Microsoft.Azure.Extensions --settings '{"fileUris": ["https://raw.githubusercontent.com/fbouteruche/RateAzureEssentials/master/scripts/setup_middle.sh"],"commandToExecute": "./setup_middle.sh"}'
 
    
     # Update VM3 with Code
-    az vm extension set --resource-group DemoRG --vm-name VM3 --name customScript --publisher Microsoft.Azure.Extensions
-      --settings '{"fileUris": ["https://raw.githubusercontent.com/fbouteruche/RateAzureEssentials/master/scripts/setup_mongodb.sh"],"commandToExecute": "./setup_mongodb.sh"}'
+    az vm extension set --resource-group DemoRG --vm-name VM3 --name customScript --publisher Microsoft.Azure.Extensions --settings '{"fileUris": ["https://raw.githubusercontent.com/fbouteruche/RateAzureEssentials/master/scripts/setup_mongodb.sh"],"commandToExecute": "./setup_mongodb.sh"}'
 
 # end of demo 1
 
