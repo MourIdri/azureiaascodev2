@@ -167,19 +167,19 @@ Demo 2 :
      az vm resize --resource-group --resource-group DemoRG --name ub-16-front-web-1 --size Standard_DS3_v2
      #The service is still up since were are in an availibility set
    
-   2.2 : Deploy resource group with a VM from a Json. Open the Azure Cli and proceed : 
-   
-    #Download the template and the paramters uisng this 
-     wget https://raw.githubusercontent.com/MourIdri/azureiaascodev1/master/azuredeploy.json
-     wget https://raw.githubusercontent.com/MourIdri/azureiaascodev1/master/azuredeploy.parameters.json
-    #Create a ressource group since the Json will not create the resource itself : 
-     az group create --name DemoRGJSON --location "westeurope"
-    #Start the deploiment using this command : 
-     az group deployment create -g DemoRGJSON --template-uri https://raw.githubusercontent.com/MourIdri/azureiaascodev1/master/azuredeploy.json --parameters @azuredeploy.parameters.json
-
-   2.3 : Using blob storage for static content  # The Static pages are avialble here : 
+   2.2 : Using blob storage for static content  # The Static pages are avialble here : 
     
      # The Static pages are available here : https://github.com/MourIdri/flaskgattling/tree/master/frontmarket 
      make sure to change the url of the POST command in the registering form otherwhise it will not respond
+
+   2.3 : Deploy resource group with a VM from a Json. Open the Azure Cli and proceed : 
+   
+    #Download the template and the paramters uisng this 
+    wget https://raw.githubusercontent.com/MourIdri/azureiaascodev1/master/azuredeploy.json
+    wget https://raw.githubusercontent.com/MourIdri/azureiaascodev1/master/azuredeploy.parameters.json
+    #Create a ressource group since the Json will not create the resource itself : 
+    az group create --name DemoRGJSON --location "westeurope"
+    #Start the deploiment using this command : 
+    az group deployment create -g DemoRGJSON --template-uri https://raw.githubusercontent.com/MourIdri/azureiaascodev1/master/azuredeploy.json --parameters @azuredeploy.parameters.json
 
 # end of demo 2
