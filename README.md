@@ -182,4 +182,7 @@ Demo 2 :
     #Start the deploiment using this command : 
     az group deployment create -g DemoRGJSON --template-uri https://raw.githubusercontent.com/MourIdri/azureiaascodev1/master/azuredeploy.json --parameters @azuredeploy.parameters.json
 
+   2.4 : Deploy resource group with a VM from a Terraform Script
+   
+   
 # end of demo 2
