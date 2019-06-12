@@ -182,7 +182,28 @@ Demo 2 :
     #Start the deploiment using this command : 
     az group deployment create -g DemoRGJSON --template-uri https://raw.githubusercontent.com/MourIdri/azureiaascodev1/master/azuredeploy.json --parameters @azuredeploy.parameters.json
 
+	
    2.4 : Deploy resource group with a VM from a Terraform Script
+    
+     # Before using Terraform for provisioning, there is a small operation to da, you have to create a service principal. This is basically a way to provide an identity to terraform itself to operate Azure Services. So to create a SPN, follow the tutorial here : 
+     
+	 https://docs.microsoft.com/en-us/azure/virtual-machines/linux/terraform-install-configure#set-up-terraform-access-to-azure
+	 
+	 # Then create a file and name it "azure_rm_provider.rf". you will write the informations provided in the above output to the tf file. The content would look like this : 
+	 
+		provider "azurerm" {
+			subscription_id = "XXXXX-XXXX-XXXX-XXXXXXXX-XXXXXX"
+			client_id       = "XXXXX-XXXX-XXXX-XXXXXXXX-XXXXXX"
+			client_secret   = "XXXXX-XXXX-XXXX-XXXXXXXX-XXXXXX"
+			tenant_id       = "XXXXX-XXXX-XXXX-XXXXXXXX-XXXXXX"
+		}
+	 
+	 # Download that file, it will be our terraform confirguration file for our provisonning : 
+	 
+	 # finaly proceed with the two below commands : 
+	 
+	        terraform init
+			terraform apply
+			
+			
    
-   
-# end of demo 2
