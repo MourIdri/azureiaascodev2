@@ -59,7 +59,7 @@ Creation VM via Portal and cli
    
    Leave the default value here : 
    
-   ![alt text](https://rgcloudmouradgeneraleuro.blob.core.windows.net/mouradpublicontainer/AZ_ESSEN_7_3.jpg) 
+   ![alt text](https://rgcloudmouradgeneraleuro.blob.core.windows.net/mouradpublicontainer/AZ_ESSEN_7_3_1.jpg) 
    
    
    ![alt text](https://rgcloudmouradgeneraleuro.blob.core.windows.net/mouradpublicontainer/AZ_ESSEN_7_4.jpg) 
