@@ -187,7 +187,7 @@ Demo 2 :
     
    Before using Terraform for provisioning, there is a small operation to da, you have to create a service principal. This is basically a way to provide an identity to terraform itself to operate Azure Services. So to create a SPN, follow the tutorial here : 
      
-	 https://docs.microsoft.com/en-us/azure/virtual-machines/linux/terraform-install-configure#set-up-terraform-access-to-azure
+		https://docs.microsoft.com/en-us/azure/virtual-machines/linux/terraform-install-configure#set-up-terraform-access-to-azure
 	 
    Then create a file and name it "azure_rm_provider.rf". you will write the informations provided in the above output to the tf file. The content would look like this : 
 	 
@@ -203,9 +203,8 @@ Demo 2 :
 		https://raw.githubusercontent.com/MourIdri/azureiaascodev2/master/create_vm.tf
 	
    Finalyinaly proceed with the two below commands : 
-	 
-	        terraform init
+
+			terraform init
 			terraform apply
-			
-			
-   
+
+# End of Demo 2
